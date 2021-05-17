@@ -1,0 +1,97 @@
+﻿<Window x:Name="Main_Window" x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GMLauncher"
+        mc:Ignorable="d"
+        Title="GMLauncher" Height="600" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized" AllowsTransparency="True" WindowStyle="None">
+    <Window.Resources>
+        <Storyboard x:Key="Wave">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.OpacityMask).(Brush.RelativeTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="Home_Background" RepeatBehavior="Forever" From="0" To="1" Duration="0:0:10" />
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Wave}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#FF1464B4">
+        <Grid x:Name="Home_MainGrid">
+            <Canvas x:Name="Particles_Host" Opacity="0" Visibility="Hidden"/>
+            <Rectangle x:Name="Home_Background" Fill="#FF1450B4" Margin="0" VerticalAlignment="Bottom" Height="500" Visibility="Hidden">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=wave}" TileMode="Tile" Viewport="0,-1,1,1" Stretch="Fill">
+                        <VisualBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </VisualBrush.RelativeTransform>
+                    </VisualBrush>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <Canvas>
+                <Grid x:Name="wave" Height="377" Canvas.Left="40" Canvas.Top="109" Width="160" Background="#00000000" Margin="-1000,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Path Fill="#FF82C6FF" Data="M12.5,1.6925709 C31.25,1.6925709 31.25,18.615654 50,18.615654 68.75,18.615654 68.75,1.6925709 87.5,1.6925709 87.499909,27.077196 87.5,27.077107 87.5,27.077107 63.28125,27.077136 12.5,27.077196 12.5,27.077196 12.5,27.077196 12.500094,27.077196 12.5,1.6925709 z" Stretch="Fill" Grid.Row="1" RenderTransformOrigin="0.5,0.5"/>
+                    <!-- <Path Fill="#FF82C6FF" Data="M12.5,1.6925709 C31.25,1.6925709 31.25,18.615654 50,18.615654 68.75,18.615654 68.75,1.6925709 87.5,1.6925709 87.499909,27.077196 87.5,27.077107 87.5,27.077107 63.28125,27.077136 12.5,27.077196 12.5,27.077196 12.5,27.077196 12.500094,27.077196 12.5,1.6925709 z" Stretch="Fill" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Margin="0">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path> -->
+                    <Rectangle Fill="#FF82C6FF" Grid.Row="2" Margin="0,-1,0,0" />
+                </Grid>
+            </Canvas>
+            <MediaElement Opacity="1" x:Name="Background_Video" Stretch="Fill" LoadedBehavior="Manual">
+                <MediaElement.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play over and over indefinitely.-->
+                                <MediaTimeline x:Name="Background_Video_Timeline" Storyboard.TargetName="Background_Video" RepeatBehavior="Forever" d:DesignTimeNaturalDuration="0" Source="Res/PS3_XMB_Blue.mp4" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </MediaElement.Triggers>
+            </MediaElement>
+            <WrapPanel x:Name="Main_Toolbar" Height="120" Margin="0,-120,0,0" VerticalAlignment="Top"/>
+            <ScrollViewer x:Name="sc" Margin="-200,130,0,0" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" MaxHeight="200" Opacity="0">
+                <WrapPanel x:Name="Main_Games" VerticalAlignment="Top" Focusable="False"/>
+            </ScrollViewer>
+            <WrapPanel x:Name="Main_Status" Height="60" Margin="0,10,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft">
+                <TextBlock x:Name="Home_Clock" TextWrapping="Wrap" Text="00:00" Foreground="White" FontSize="48" FontFamily="Microsoft YaHei Light" Margin="10,0,0,0"/>
+            </WrapPanel>
+            <MediaElement Opacity="1" Source="Res/PS2_XMB_STARTUP.mp4" x:Name="Background_Startup_Video" Stretch="Fill" LoadedBehavior="Play" Volume="1"/>
+        </Grid>
+        <Grid x:Name="Home_Settings" Background="#FF1450B4" Visibility="Visible" Opacity="0" d:IsHidden="True">
+            <TextBlock x:Name="Home_Settings_Header" HorizontalAlignment="Left" Margin="43,10,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Foreground="White" FontSize="32" FontFamily="Microsoft YaHei Light"/>
+            <WrapPanel x:Name="Home_Settings_WPanel" Margin="10,70,10,0" Orientation="Vertical">
+                <Border Width="{Binding Width, ElementName=Main_Window}"/>
+            </WrapPanel>
+            <Grid x:Name="Home_Settings_SPanel" Margin="10,68,10,0" Opacity="0"/>
+        </Grid>
+        <Grid x:Name="Home_Loading" Opacity="0" d:IsHidden="True" Background="#FF1450B4">
+            <Image x:Name="Loading_Cross" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="Res/p4_cross.png" Margin="75,75,0,0" Opacity="0"/>
+            <Image x:Name="Loading_Circle" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="Res/p4_circle.png" Margin="75,-75,0,0" Opacity="0"/>
+            <Image x:Name="Loading_Square" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="Res/p4_square.png" Margin="-75,75,0,0" Opacity="0"/>
+            <Image x:Name="Loading_Triangle" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="Res/p4_triangle.png" Margin="-75,-75,0,0" Opacity="0"/>
+        </Grid>
+        <Grid x:Name="Home_Error" Background="#FF1450B4" Margin="-100" Opacity="0" d:IsHidden="True">
+            <TextBlock x:Name="Home_Error_Message" TextWrapping="Wrap" Text="An error has occured with something." VerticalAlignment="Center" Foreground="White" FontSize="26.667" Margin="0" TextAlignment="Center" FontFamily="Microsoft YaHei Light"/>
+            <local:ButtonItem x:Name="Home_Error_Btn" OnClick="Home_Error_Btn_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" Width="290" Margin="0,600,0,0"/>
+        </Grid>
+        <Image x:Name="Home_BigGameLogo" Source="TempRes/8.jpg" Margin="100" Opacity="0" d:IsHidden="True"/>
+    </Grid>
+</Window>

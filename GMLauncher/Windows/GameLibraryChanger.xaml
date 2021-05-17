@@ -1,0 +1,34 @@
+﻿<UserControl x:Name="UC" x:Class="GameLibraryChanger"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GMLauncher"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" Focusable="True">
+    <Grid>
+        <Grid x:Name="LibEditHost" Opacity="0">
+            <Image x:Name="LibEditHost_IM_Icon" HorizontalAlignment="Center" Height="250" VerticalAlignment="Center" Width="250" Source="/GMLauncher;component/Res/osd_gamesettings.png" Margin="0,10,0,190"/>
+            <TextBox x:Name="LibEditHost_TB_Title" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Title" VerticalAlignment="Center" Width="495" Focusable="False" FontFamily="Microsoft YaHei UI Light" FontSize="16" BorderBrush="White" Background="{x:Null}" Foreground="White" Margin="0,190,0,88"/>
+            <Button x:Name="LibEditHost_BTN_Source" Content="Source" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Focusable="False" FontSize="18.667" FontFamily="Microsoft YaHei UI Light" Background="{x:Null}" Foreground="White" BorderBrush="White" Margin="0,217,0,55"/>
+            <Button x:Name="LibEditHost_BTN_IconSource" Content="Icon" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Focusable="False" FontSize="18.667" FontFamily="Microsoft YaHei UI Light" Background="{x:Null}" BorderBrush="White" Foreground="White" Margin="-155,250,0,22"/>
+            <Button x:Name="LibEditHost_BTN_BigIconSource" Content="Big Icon" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Focusable="False" FontSize="18.667" FontFamily="Microsoft YaHei UI Light" Background="{x:Null}" BorderBrush="White" Foreground="White" Margin="155,250,0,22"/>
+            <Button x:Name="LibEditHost_BTN_Done" Content="Done" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Focusable="False" FontSize="18.667" FontFamily="Microsoft YaHei UI Light" Background="{x:Null}" BorderBrush="White" Foreground="White" Margin="-155,283,0,-11"/>
+            <Button x:Name="LibEditHost_BTN_Cancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Focusable="False" FontSize="18.667" FontFamily="Microsoft YaHei UI Light" Background="{x:Null}" BorderBrush="White" Foreground="White" Margin="155,283,0,-11"/>
+        </Grid>
+        <Grid x:Name="IAppsHost" Opacity="0" d:IsHidden="True">
+            <ListView x:Name="IAppsView" Focusable="False">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="#" DisplayMemberBinding="{Binding Num}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Location" DisplayMemberBinding="{Binding Source}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <WrapPanel x:Name="Main_Panel" Width="{Binding Width, ElementName=UC}" Orientation="Vertical" d:IsHidden="True">
+            <Border Width="1500"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

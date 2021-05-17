@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="GameItemXbox360"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GMLauncher"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="210" Height="380" Background="#FFFAF0F0" Focusable="True">
+    <Grid>
+        <Image x:Name="Game_Icon" Height="240" VerticalAlignment="Top" Margin="10,10,10,0"/>
+        <TextBlock x:Name="Game_Title" Margin="10,264,0,0" TextWrapping="Wrap" Text="Game Title" VerticalAlignment="Top" Foreground="#FF5A5A5A" FontSize="18.667"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="RectItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GMLauncher"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="Auto" Height="50" Focusable="True" BorderBrush="{x:Null}">
+    <Grid>
+        <Border x:Name="Main_Border" BorderBrush="White" BorderThickness="0">
+            <WrapPanel Margin="0">
+                <Image x:Name="Rect_Icon" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="64" Stretch="Fill" Margin="-8,-7,0,0"/>
+                <TextBlock x:Name="Message_TB" TextWrapping="Wrap" Text="Text" Foreground="White" FontFamily="Microsoft YaHei Light" FontSize="16" Margin="10,14.5,0,0"/>
+            </WrapPanel>
+        </Border>
+    </Grid>
+</UserControl>
